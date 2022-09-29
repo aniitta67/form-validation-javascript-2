@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+		
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+
+	<body>
+
+
+    <script>
+		function validateform(){
+	    var form=document.getElementById("form");
+        //firstname
+		var fname=document.getElementById("fname").value;		
+		var fnamepara=document.getElementById("fnamepara");
+       //lastname
+	    var lname=document.myform.lname.value;
+		var lnamepara=document.getElementById("lnamepara");
+		// email
+		var pemail=document.myform.pemail.value;
+		var emailpara=document.getElementById("emailpara");
+		// phone number
+        var pphone=document.myform.pphone.value;
+		var phonepara=document.getElementById("phonepara");
+		// password
+        var pswd=document.myform.pswd.value;
+		var pswdpara=document.getElementById("pswdpara");
+		// confirm password
+        var repswd=document.myform.repswd.value;
+		var repswdpara=document.getElementById("repswdpara");
+		
+
+        
+
+
+		/* Validation pattern*/
+		var nameRegx=/^[A-Za-z]+$/;
+		var emailRegx=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var phoneRegx=/^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
+        
+       var status=false;
+		
+	   if(!fname.match(nameRegx) || fname=="" || fname.length<3){
+		fnamepara.innerHTML="Enter a valid name";
+	    fnamepara.style.color="red";
+		status=false;
+		return false;
+	   }
+	   else{
+
+		fnamepara.innerHTML="valid";
+	    fnamepara.style.color="#00ff00";
+		status=true;
+	   }
+
+	    if(!lname.match(nameRegx) || lname=="" || lname.length<3){		
+		lnamepara.innerHTML="Enter a valid name";
+	    lnamepara.style.color="red";
+		status=false;
+		return false;
+	   }
+	   else{
+
+		lnamepara.innerHTML="valid";
+	    lnamepara.style.color="#00ff00";
+		status=true;
+	   }
+
+	   if(!emailRegx.test(pemail) ){
+            emailpara.innerHTML="Enter a valid email";
+			emailpara.style.color="red";
+			status=false;
+            return false;
+	   }
+	   else{
+	   
+		emailpara.innerHTML="valid";
+		emailpara.style.color="#00ff00";
+		status=true;
+	   }
+
+       if(!phoneRegx.test(pphone) ){
+		
+            phonepara.innerHTML="Invalid format";
+			phonepara.style.color="red";
+            status=false;
+            return false;
+		}
+		else{
+			phonepara.innerHTML="valid";
+			phonepara.style.color="#00ff00";
+		    status=true;
+		}
+       if(pswd.length<4){
+			
+            pswdpara.innerHTML="Enter more than 4 characters.";
+			pswdpara.style.color="red";
+			status=false;
+            return false;
+		}
+		else{
+			pswdpara.innerHTML="valid";
+			pswdpara.style.color="#00ff00";
+		    status=true;
+		}
+        if(pswd!=repswd){
+			repswdpara.style.color="red";
+            repswdpara.innerHTML="PASSWORD MUST BE SAME";
+
+            status=false;
+            return false;
+		}
+		else{
+          
+			repswdpara.innerHTML="valid";
+			repswdpara.style.color="#00ff00";
+		    status=true;
+		}
+
+
+	   return status;
+	   alert("REGISTRATION SUCCESSFULL")
+ 
+		}
+	</script>
+
+
+		<div class="wrapper" style="background-image: url('images/bg-registration-form-2.jpg');">
+			<div class="inner">
+				<form name="myform" id="form" method="get" action="./new.html" onsubmit="return validateform()" >
+					<h3>Registration Form</h3>
+					<div class="form-group">
+						<div class="form-wrapper">
+							<label for="" > <span style="color: red;">*</span> First Name</label>
+							<input type="text" class="form-control" name="fname" id="fname" required onkeyup="validateform()" > <p name="fnamepara" id="fnamepara" style="color: red;"></p>
+						</div>
+                         
+						<div class="form-wrapper">
+							<label for=""><span style="color: red;">*</span>Last Name</label>
+							<input type="text" class="form-control" name="lname" id="lname" onkeyup="validateform()" required> <p id="lnamepara" ></p>
+						</div>
+					</div>
+                    
+					<div class="form-wrapper">
+                       
+                        <label for=""><span style="color: red;">*</span>Email</label>
+						<input type="text" class="form-control" name="pemail" onkeyup="validateform()" required/> <p id="emailpara" ></p>
+
+					</div>
+					<div class="form-wrapper">
+						<label for="phone"><span style="color: red;">*</span>Phone</label>
+						<input type="number" class="form-control" name="pphone" onkeyup="validateform()" required /><p id="phonepara"></p>
+					</div>
+					<div class="form-wrapper">
+						<label for=""><span style="color: red;">*</span>Password</label>
+						<input type="password" class="form-control" onkeyup="validateform()" required name="pswd"><p id="pswdpara" ></p>
+					</div>
+					<div class="form-wrapper">
+						<label for=""><span style="color: red;">*</span>Confirm Password</label>
+						<input type="password" class="form-control" onkeyup="validateform()" required name="repswd"><p id="repswdpara"></p>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" required > I caccept the Terms of Use & Privacy Policy.
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<button type="submit" >Register Now</button>
+				</form>
+			</div>
+		</div>
+		
+	</body>
+</html>
